@@ -1,0 +1,129 @@
+
+<!-- <input type="radio" formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['departmentname'].errors }" /> -->
+<div>
+<div id="one">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <fa-icon [icon]="faBars" id="icon" (click)="sidenav.toggle()"></fa-icon>
+    <h1 id="heading">HINOPAK VMS</h1>
+    <span class="menu-spacer"></span>
+    <div> 
+      <p ><a id="para" mat-button [routerLink]="'/accounts'">New Appointment</a></p>
+    </div>
+    <fa-icon [icon]="faRightFromBracket" id="icon2" ></fa-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+</div>
+<div> 
+<mat-sidenav-container >
+  
+  <mat-sidenav #sidenav id="container">
+    <mat-nav-list id="list">
+
+      <a mat-list-item [routerLink]="'/accounts'"> Dashboard</a>
+      <a mat-list-item [routerLink]="'/create-account'"> New Appointment </a>
+      <a mat-list-item [routerLink]="'/contacts'"> Visitor List </a>
+      <a mat-list-item [routerLink]="'/create-contact'"> Pre-Registration </a>
+      <a mat-list-item [routerLink]="'/activities'"> Reports </a>
+      <a mat-list-item [routerLink]="'/create-activity'"> Log Out </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 500px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+</div>
+
+<div class="register-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <h1>New Appointment</h1>
+    <p>Please enter the details of the visitor</p>
+    
+    <div class="form-group">
+      <label>Visitor Name</label>
+      <input type="text" placeholder="Enter Visitor Name" formControlName="visitorname" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['visitorname'].errors }" />
+      <div *ngIf="submitted && f['visitorname'].errors" class="invalid-feedback">
+        <div *ngIf="f['visitorname'].errors['required']">Visitor Name is required</div>
+        <div *ngIf="f['visitorname'].errors['minlength']">
+          Visitor must be at least 6 characters
+        </div>
+        <div *ngIf="f['visitorname'].errors['maxlength']">
+          Visitor Name must not exceed 20 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Organization Name</label>
+      <input type="text" placeholder="Enter Organization Name" formControlName="organizationname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['organizationname'].errors }" />
+      <div *ngIf="submitted && f['organizationname'].errors" class="invalid-feedback">
+        <div *ngIf="f['organizationname'].errors['required']">Organization Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Person To Visit</label>
+      <input type="textarea"  placeholder="Enter Host Name" formControlName="persontovisit" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['persontovisit'].errors }" />
+      <div *ngIf="submitted && f['persontovisit'].errors" class="invalid-feedback">
+        <div *ngIf="f['persontovisit'].errors['required']">Person Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Purpose of Visit</label>
+      <input type="text" placeholder="Enter Purpose of Visit" formControlName="purpose" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['purpose'].errors }" />
+      <div *ngIf="submitted && f['purpose'].errors" class="invalid-feedback">
+        <div *ngIf="f['purpose'].errors['required']">Purpose is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>CNIC Number</label>
+      <input type="number" placeholder="Enter CNIC Number" formControlName="cnicnumber" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['cnicnumber'].errors }" />
+      <div *ngIf="submitted && f['cnicnumber'].errors" class="invalid-feedback">
+        <div *ngIf="f['cnicnumber'].errors['required']">CNIC Number is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="tel"  placeholder="Enter Contact Number" formControlName="contactnumber" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['contactnumber'].errors }" />
+      <div *ngIf="submitted && f['contactnumber'].errors" class="invalid-feedback">
+        <div *ngIf="f['contactnumber'].errors['required']">CNIC Number is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Department Name</label>
+      <select class="custom-select mb-3"  (change)="changeDept($event)" formControlName="deptName">
+      <option value="">Select Department</option>
+      <option *ngFor="let dept of Department" [ngValue]="dept">
+        {{ dept }}
+      </option>
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label>Gender:</label><br>
+      <input type="radio" value="male" name="gender" required > Male <br>
+      <input type="radio" value="female" name="gender"required > Female <br>
+    </div>   
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="button" (click)="onReset()" class="btn btn-warning float-right">
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+  </div>
