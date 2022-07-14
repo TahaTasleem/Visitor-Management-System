@@ -5,6 +5,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <fa-icon [icon]="faBars" id="icon" (click)="sidenav.toggle()"></fa-icon>
+    <img src="hino.png" alt='hino_symbol' width="50" height="50"> 
     <h1 id="heading">HINOPAK VMS</h1>
     <span class="menu-spacer"></span>
     <div> 
@@ -32,14 +33,9 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 500px;">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-
-</div>
+    <!-- <div style="height: 500px;"> -->
+      
+<!-- </div> -->
 
 <div class="register-form">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -126,4 +122,10 @@
     </div>
   </form>
 </div>
-  </div>
+  <!-- </div> -->
+
+      <router-outlet></router-outlet>
+    <!-- </div> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
